@@ -1,4 +1,4 @@
-export { default as Block } from './Block';
+export { default as BlockNode } from './BlockNode';
 export { default as Node } from './Node';
-export { default as Query } from './Query';
-export { default as Selector } from './Selector';
+export { default as QueryNode } from './QueryNode';
+export { default as SelectorNode } from './SelectorNode';

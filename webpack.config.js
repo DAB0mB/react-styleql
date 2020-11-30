@@ -2,7 +2,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   devtool: 'sourcemap',
   entry: {
     index: path.resolve(__dirname, 'src/index'),

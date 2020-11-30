@@ -1,10 +1,3 @@
-class Node {
-  constructor(parser) {
-    Object.defineProperty(this, 'parser', {
-      configurable: true,
-      value: parser,
-    });
-  }
-}
+class Node {}
 
 export default Node;

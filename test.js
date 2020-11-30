@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import styleql, { ThemeProvider } from './react-styleql';
+// Visit: codesandbox.io/s/react-styleql-testjs-02wh1
+import React from "react";
+import { View, Text } from "react-native";
+import styleql, { ThemeProvider } from "./react-styleql";
 
 const Br = styleql.bind(View)`
   margin-top: 20px;
@@ -8,7 +9,7 @@ const Br = styleql.bind(View)`
 
 const Title = styleql.bind(Text)`
   font-weight: 700;
-`
+`;
 
 const AllChildrenOfTypeStyle = styleql`
   & ${View} {
@@ -25,12 +26,20 @@ const AllChildrenOfType = () => {
     <React.Fragment>
       <Title>All Children of Type</Title>
       <AllChildrenOfTypeStyle>
-        <View><Text>outer element 1</Text></View>
+        <View>
+          <Text>outer element 1</Text>
+        </View>
         <React.Fragment>
-          <View><Text>inner element 2</Text></View>
-          <View><Text>inner element 3</Text></View>
+          <View>
+            <Text>inner element 2</Text>
+          </View>
+          <View>
+            <Text>inner element 3</Text>
+          </View>
         </React.Fragment>
-        <View><Text>outer element 4</Text></View>
+        <View>
+          <Text>outer element 4</Text>
+        </View>
       </AllChildrenOfTypeStyle>
     </React.Fragment>
   );
@@ -51,18 +60,26 @@ const AllDirectChildrenOfType = () => {
     <React.Fragment>
       <Title>All Direct Children of Type</Title>
       <AllDirectChildrenOfTypeStyle>
-        <View><Text>outer element 1</Text></View>
+        <View>
+          <Text>outer element 1</Text>
+        </View>
         <React.Fragment>
-          <View><Text>inner element 2</Text></View>
-          <View><Text>inner element 3</Text></View>
+          <View>
+            <Text>inner element 2</Text>
+          </View>
+          <View>
+            <Text>inner element 3</Text>
+          </View>
         </React.Fragment>
-        <View><Text>outer element 4</Text></View>
+        <View>
+          <Text>outer element 4</Text>
+        </View>
       </AllDirectChildrenOfTypeStyle>
     </React.Fragment>
   );
 };
 
-const AllChildrenWithClassStyle = styleql `
+const AllChildrenWithClassStyle = styleql`
   & .red {
     background-color: red;
   }
@@ -85,15 +102,21 @@ const AllChildrenWithClass = () => {
     <React.Fragment>
       <Title>All Children With Class</Title>
       <AllChildrenWithClassStyle>
-        <View className='red'><Text>red</Text></View>
-        <View className='green'><Text>green</Text></View>
-        <View className='blue'><Text>blue</Text></View>
+        <View className="red">
+          <Text>red</Text>
+        </View>
+        <View className="green">
+          <Text>green</Text>
+        </View>
+        <View className="blue">
+          <Text>blue</Text>
+        </View>
       </AllChildrenWithClassStyle>
     </React.Fragment>
   );
 };
 
-const MultiClassStyle = styleql `
+const MultiClassStyle = styleql`
   & .bg-blue {
     background-color: blue;
   }
@@ -112,23 +135,27 @@ const MultiClass = () => {
     <React.Fragment>
       <Title>Multi Class</Title>
       <MultiClassStyle>
-        <View className='bg-blue text-white'><Text>blue background with white text</Text></View>
-        <View className='bg-blue text-red'><Text>blue background with red text</Text></View>
+        <View className="bg-blue text-white">
+          <Text>blue background with white text</Text>
+        </View>
+        <View className="bg-blue text-red">
+          <Text>blue background with red text</Text>
+        </View>
       </MultiClassStyle>
     </React.Fragment>
   );
 };
 
-const NthChildrenStyle = styleql `
-  & ${Text}!@3 {
+const NthChildrenStyle = styleql`
+  & ${Text}!#3 {
     color: white;
   }
 
-  & > @1, & > @2 {
+  & > #1, & > #2 {
     background-color: blue;
   }
 
-  & > @-1, & > @-2 {
+  & > #-1, & > #-2 {
     background-color: red;
   }
 `;
@@ -138,22 +165,32 @@ const NthChildren = () => {
     <React.Fragment>
       <Title>Nth Children</Title>
       <NthChildrenStyle>
-        <View><Text>1</Text></View>
-        <View><Text>2</Text></View>
-        <View><Text>3</Text></View>
-        <View><Text>-2</Text></View>
-        <View><Text>-1</Text></View>
+        <View>
+          <Text>1</Text>
+        </View>
+        <View>
+          <Text>2</Text>
+        </View>
+        <View>
+          <Text>3</Text>
+        </View>
+        <View>
+          <Text>-2</Text>
+        </View>
+        <View>
+          <Text>-1</Text>
+        </View>
       </NthChildrenStyle>
     </React.Fragment>
   );
 };
 
-const NegativityStyle = styleql `
-  & !@1 {
+const NegativityStyle = styleql`
+  & !#1 {
     color: white;
   }
 
-  & !@-1 {
+  & !#-1 {
     color: white;
   }
 
@@ -171,8 +208,8 @@ const Negativity = () => {
     <React.Fragment>
       <Title>Negativity</Title>
       <NegativityStyle>
-        <Text className='red'>not blue</Text>
-        <Text className='blue'>not red</Text>
+        <Text className="red">not blue</Text>
+        <Text className="blue">not red</Text>
       </NegativityStyle>
     </React.Fragment>
   );
@@ -204,10 +241,10 @@ const ByProp = () => {
   );
 };
 
-const PropEvalStyle = styleql `
+const PropEvalStyle = styleql`
   & ${Text} {
     color: white;
-    background-color: ${() => props.disabled ? 'red' : 'green'};
+    background-color: ${props => (props.disabled ? "red" : "green")};
   }
 `;
 
@@ -223,7 +260,7 @@ const PropEval = () => {
   );
 };
 
-const ThemetEvalStyle = styleql `
+const ThemetEvalStyle = styleql`
   & ${Text} {
     color: white;
   }
@@ -237,20 +274,26 @@ const ThemetEvalStyle = styleql `
   }
 
   & .blue {
-    background-color: ${() => theme.blue};
+    background-color: ${(props, theme) => theme.blue};
   }
 `;
 
 const ThemeEval = () => {
-  const [theme] = React.useState({ red: 'red', green: 'green', blue: 'blue' });
+  const [theme] = React.useState({ red: "red", green: "green", blue: "blue" });
 
   return (
     <ThemeProvider theme={theme}>
       <Title>Theme Eval</Title>
       <ThemetEvalStyle>
-        <View className='red'><Text>red</Text></View>
-        <View className='green'><Text>green</Text></View>
-        <View className='blue'><Text>blue</Text></View>
+        <View className="red">
+          <Text>red</Text>
+        </View>
+        <View className="green">
+          <Text>green</Text>
+        </View>
+        <View className="blue">
+          <Text>blue</Text>
+        </View>
       </ThemetEvalStyle>
     </ThemeProvider>
   );

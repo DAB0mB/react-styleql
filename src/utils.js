@@ -20,28 +20,3 @@ export const camelCase = (str) => {
 
   return [first, ...rest].join('');
 };
-
-export const getAllChildNodes = (node, allChildNodes = new Set()) => {
-  if (typeof node != 'object') return allChildNodes;
-
-  for (let childNode of node.children) {
-    allChildNodes.add(childNode);
-  }
-
-  for (let childNode of node.children) {
-    getAllChildNodes(childNode, allChildNodes);
-  }
-
-  return allChildNodes;
-};
-
-export const nextWhileMatches = (iterator, pattern, result = iterator.next()) => {
-  let str = '';
-
-  while (!result.done && result.value.match(pattern)) {
-    str += result.value;
-    result = iterator.next();
-  }
-
-  return str;
-};

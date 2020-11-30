@@ -1,10 +1,10 @@
 import React from 'react';
 
-import StyleQLParser from './StyleQLParser';
+import { parseStyleQLSheet } from './parsers';
 import { isRN } from './utils';
 
 export * from './nodes';
-export { StyleQLParser };
+export * from './parsers';
 
 export const ThemeContext = React.createContext(null);
 
@@ -18,9 +18,9 @@ export const useTheme = () => {
   return React.useContext(ThemeContext);
 };
 
-export const bindStyleSheet = (Element) => {
-  return (styleStr, ...params) => {
-    const styleSheet = StyleQLParser.parse(styleStr, ...params);
+export const bindStyleQLSheet = (Element) => {
+  return (strs, ...params) => {
+    const styleSheet = parseStyleQLSheet(strs, ...params);
 
     const createNode = (element) => {
       if (typeof element != 'object') return element;
@@ -43,42 +43,42 @@ export const bindStyleSheet = (Element) => {
       };
     };
 
-    const createStyledChildren = (node) => {
-      if (typeof node != 'object') return node;
+    const createStyledChildren = ($node) => {
+      if (typeof $node != 'object') return $node;
 
       return React.createElement(
-        node.type,
-        node.type === React.Fragment ? node.props : {
-          ...node.props,
-          style: node.style
+        $node.type,
+        $node.type === React.Fragment ? $node.props : {
+          ...$node.props,
+          ...(!Object.keys($node.style).length ? {} : { style: $node.style }),
         },
-        ...node.children.map((childNode) => {
+        ...$node.children.map((childNode) => {
           return createStyledChildren(childNode);
         })
       );
     };
 
     const StyledElement = (props) => {
-      const root = createNode(<Element {...props} />);
+      const $root = createNode(<Element {...props} />);
       const theme = React.useContext(ThemeContext);
 
-      styleSheet.applyStyles(root, theme);
+      styleSheet.applyStyles($root, theme);
 
-      return createStyledChildren(root);
+      return createStyledChildren($root);
     };
 
     return StyledElement;
   };
 };
 
-export const createStyleSheet = (...args) => {
-  return bindStyleSheet(React.Fragment)(...args);
+export const createStyleQLSheet = (...args) => {
+  return bindStyleQLSheet(React.Fragment)(...args);
 };
 
 const styleql = (...args) => {
-  return createStyleSheet(...args);
+  return createStyleQLSheet(...args);
 };
 
-styleql.bind = bindStyleSheet;
+styleql.bind = bindStyleQLSheet;
 
 export default styleql;
