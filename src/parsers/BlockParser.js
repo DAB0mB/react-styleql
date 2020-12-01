@@ -10,7 +10,7 @@ class BlockParser extends Parser {
     this.cursor.next();
 
     loop:
-    while (!this.cursor.done) {
+    while (!this.cursor.done && !/\}/.test(this.cursor.value)) {
       switch (this.cursor.value) {
         case '&': {
           const selector = this.parseSelector();
@@ -19,19 +19,20 @@ class BlockParser extends Parser {
           childBlocks.push(childBlock);
           break;
         }
-        case '/': {
-          if (this.cursor.offset(-1) != '/') break;
-          this.cursor.nextWhileMatches(/[^\n]/);
-          continue loop;
-        }
-        case '}': {
-          break loop;
-        }
         default:
+          if (this.cursor.nextIf('//')) {
+            this.cursor.nextWhile(/[^\n]/);
+            continue loop;
+          }
+
+          if (this.cursor.nextIf('/*')) {
+            while (!this.cursor.nextIf('*/')) this.cursor.next();
+            continue loop;
+          }
+
           if (/\w/.test(this.cursor.value)) {
             const rule = this.parseRule();
             rules[rule.key] = rule.value;
-            break;
           }
       }
 
@@ -49,27 +50,13 @@ class BlockParser extends Parser {
   }
 
   parseKey() {
-    let key = this.cursor.value;
+    const key = this.cursor.nextWhile(/[^:]/, this.cursor).trim();
 
-    this.cursor.next();
-
-    while (!this.cursor.done && this.cursor.value !== ':') {
-      key += this.cursor.value;
-      this.cursor.next();
-    }
-
-    return camelCase(key.trim());
+    return camelCase(key);
   }
 
   parseValue() {
-    this.cursor.next();
-
-    let value = this.cursor.value;
-
-    while (!this.cursor.done && this.cursor.value !== ';') {
-      value += this.cursor.value;
-      this.cursor.next();
-    }
+    const value = this.cursor.nextWhile(/[^;]/);
 
     return this.parseParam(value);
   }

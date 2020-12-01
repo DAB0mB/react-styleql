@@ -1,8 +1,8 @@
 import Node from './Node';
 
 class SelectorNode extends Node {
-  constructor(params) {
-    super(params);
+  constructor() {
+    super();
 
     this.queries = [];
   }

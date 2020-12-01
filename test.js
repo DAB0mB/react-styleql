@@ -1,6 +1,6 @@
 // Visit: codesandbox.io/s/react-styleql-testjs-02wh1
 import React from "react";
-import { View, Text } from "react-native";
+import { View, ScrollView, Text } from "react-native";
 import styleql, { ThemeProvider } from "./react-styleql";
 
 const Br = styleql.bind(View)`
@@ -301,7 +301,7 @@ const ThemeEval = () => {
 
 const App = () => {
   return (
-    <React.Fragment>
+    <ScrollView>
       <AllChildrenOfType />
       <Br />
       <AllDirectChildrenOfType />
@@ -319,7 +319,7 @@ const App = () => {
       <PropEval />
       <Br />
       <ThemeEval />
-    </React.Fragment>
+    </ScrollView>
   );
 };
 

@@ -1,8 +1,8 @@
 import Node from './Node';
 
 class QueryNode extends Node {
-  constructor(params) {
-    super(params);
+  constructor() {
+    super();
 
     this.specifiers = [];
   }
@@ -22,7 +22,7 @@ class QueryNode extends Node {
         selection = [$node];
     }
 
-    selection = selection.filter((n) => typeof n == 'object');
+    selection = selection.filter(($n) => typeof $n == 'object');
 
     if (specifier.type !== '|') {
       specifier = specifiers.shift();
@@ -38,12 +38,12 @@ class QueryNode extends Node {
           );
           break;
         case '#': {
-          const offset = filter.offset > 0 ? filter.offset - 1 : selection.length + filter.offset;
+          const index = filter.index > 0 ? filter.index - 1 : selection.length + filter.index;
           if (filter.isNegative) {
-            selection = [...selection.slice(0, offset), ...selection.slice(offset + 1)];
+            selection = [...selection.slice(0, index), ...selection.slice(index + 1)];
           }
           else {
-            selection = [selection[offset]].filter(Boolean);
+            selection = [selection[index]].filter(Boolean);
           }
           break;
         }
@@ -58,8 +58,13 @@ class QueryNode extends Node {
           break;
         default: {
           let type = filter.elementType;
-          if (type === '*') test = () => !filter.isNegative;
-          else if (type === '&') type = $node.type;
+          if (type === '*') {
+            selection = filter.isNegative ? [] : selection;
+            break;
+          }
+          if (type === '&') {
+            type = $node.type;
+          }
           selection = selection.filter(($n) => test($n.type === type));
         }
       }
@@ -72,8 +77,8 @@ class QueryNode extends Node {
     const selectionSet = new Set();
 
     for (let $n of selection) {
-      for (let $s of this.select($n, specifiers.slice())) {
-        selectionSet.add($s);
+      for (let $n2 of this.select($n, specifiers.slice())) {
+        selectionSet.add($n2);
       }
     }
 

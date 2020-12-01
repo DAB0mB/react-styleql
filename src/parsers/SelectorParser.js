@@ -9,7 +9,7 @@ class SelectorParser extends Parser {
     while (!this.cursor.done && this.cursor.value !== '{') {
       const query = this.parseQuery();
       queries.push(query);
-      this.cursor.nextWhileMatches(/[\n, ]/, this.cursor);
+      this.cursor.nextWhile(/[\n, ]/, this.cursor);
     }
 
     return selector;
