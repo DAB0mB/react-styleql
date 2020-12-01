@@ -3,11 +3,11 @@ import React from "react";
 import { View, ScrollView, Text } from "react-native";
 import styleql, { ThemeProvider } from "./react-styleql";
 
-const Br = styleql.bind(View)`
+const Br = styleql(View)`
   margin-top: 20px;
 `;
 
-const Title = styleql.bind(Text)`
+const Title = styleql(Text)`
   font-weight: 700;
 `;
 

@@ -71,14 +71,12 @@ export const bindStyleQLSheet = (Element) => {
   };
 };
 
-export const createStyleQLSheet = (...args) => {
-  return bindStyleQLSheet(React.Fragment)(...args);
-};
-
 const styleql = (...args) => {
-  return createStyleQLSheet(...args);
-};
+  if (args[0] instanceof Array) {
+    return bindStyleQLSheet(React.Fragment)(...args);
+  }
 
-styleql.bind = bindStyleQLSheet;
+  return bindStyleQLSheet(args[0]);
+};
 
 export default styleql;

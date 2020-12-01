@@ -7,16 +7,16 @@ export { default as Parser } from './Parser';
 export { default as QueryParser } from './QueryParser';
 export { default as SelectorParser } from './SelectorParser';
 
-export const parseStyleQLSheet = (strs, ...paramsValues) => {
-  const params = [...new Set(paramsValues)];
+export const parseStyleQLSheet = (strs, ...pargs) => {
+  const params = [...new Set(pargs)];
 
   const template = strs.reduce((split, str, index) => {
     split.push(str);
 
-    const paramIndex = params.indexOf(paramsValues[index]);
+    const pindex = params.indexOf(pargs[index]);
 
-    if (~paramIndex) {
-      split.push('$' + paramIndex);
+    if (~pindex) {
+      split.push('$' + pindex);
     }
 
     return split;
