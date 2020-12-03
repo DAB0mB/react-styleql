@@ -1,4 +1,4 @@
-import { camelCase, isRN } from '../utils';
+import { camelCase } from '../utils';
 import Node from './Node';
 
 class BlockNode extends Node {
@@ -30,14 +30,9 @@ class BlockNode extends Node {
         return rules;
       }, {});
 
-      if (isRN) {
-        $n.style.unshift(rules);
-      }
-      else {
-        for (let key in rules) {
-          if (!(key in $n.style)) {
-            $n.style[key] = rules[key];
-          }
+      for (let key in rules) {
+        if (!(key in $n.style)) {
+          $n.style[key] = rules[key];
         }
       }
 

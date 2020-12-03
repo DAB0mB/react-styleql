@@ -1,13 +1,11 @@
 {
-  "name": "react-styleql",
-  "description": "A DOM free, light-weight, no dependencies, custom made CSS-like query selector engine for styling React (Native) components",
+  "name": "@styleql/core",
+  "description": "A DOM free, light-weight, CSS-like query selector engine; with 0 dependencies!",
   "version": "0.1.0",
-  "license": "MIT",
-  "author": "DAB0mB",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/dab0mb/react-layers-stack.git"
-  },
+  "private": true,
+  "workspaces": [
+    "targets/react"
+  ],
   "scripts": {
     "lint": "eslint src/.",
     "typecheck": "tsc",
@@ -32,12 +30,13 @@
     "eslint": "^6.8.0",
     "eslint-loader": "^3.0.3",
     "eslint-plugin-react": "^7.18.3",
-    "husky": "^4.2.1",
+    "husky": "^4.3.0",
     "lint-staged": "^10.0.7",
     "typescript": "^4.0.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
+    "webpack-merge": "^5.4.0",
     "webpack-node-externals": "^1.7.2"
   },
   "husky": {
@@ -46,13 +45,12 @@
     }
   },
   "lint-staged": {
-    "src/**/*.js": [
+    "(src|targets/*/src)/**/*.js": [
       "yarn eslint --fix"
     ]
   },
   "keywords": [
-    "react",
-    "navigation",
-    "animations"
+    "css",
+    "style"
   ]
 }

@@ -1,7 +1,7 @@
 // Visit: codesandbox.io/s/react-styleql-testjs-02wh1
+import styleql, { ThemeProvider } from "@styleql/react";
 import React from "react";
 import { View, ScrollView, Text } from "react-native";
-import styleql, { ThemeProvider } from "./react-styleql";
 
 const Br = styleql(View)`
   margin-top: 20px;

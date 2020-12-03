@@ -1,0 +1,19 @@
+{
+  "name": "@styleql/react",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint src/.",
+    "typecheck": "tsc",
+    "bundle": "webpack --config webpack.config.js",
+    "build": "yarn lint && yarn typecheck && yarn bundle",
+    "prepublishOnly": "yarn build"
+  },
+  "peerDependencies": {
+    "@styleql/core": "0.1.0",
+    "react": ">=16.8"
+  },
+  "optionalDependencies": {
+    "@types/react": ">=16.8"
+  }
+}

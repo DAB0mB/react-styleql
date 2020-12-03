@@ -1,4 +1,6 @@
 **
 !lib/**/*
 !index.js
+!ink.js
+!native.js
 !types.d.ts

@@ -1,7 +1,3 @@
-export const isRN = typeof document == 'undefined';
-export const isBrowser = !isRN;
-export const global = isRN ? global : window;
-
 export const splitWords = (str) => {
   return str
     .replace(/[A-Z]/g, ' $&')
