@@ -1,6 +1,6 @@
 {
-  "name": "@styleql/core",
-  "description": "A DOM free, light-weight, CSS-like query selector engine; with 0 dependencies!",
+  "name": "@styleql/react",
+  "description": "A React adapter for @styleql/core",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,31 +15,31 @@
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.4",
     "@babel/plugin-proposal-optional-chaining": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.4",
+    "@types/react": ">=16.8.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "eslint": "^6.8.0",
     "eslint-loader": "^3.0.3",
     "eslint-plugin-react": "^7.18.3",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.0.7",
     "typescript": "^4.0.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
+    "webpack-merge": "^5.4.0",
     "webpack-node-externals": "^1.7.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "peerDependencies": {
+    "@styleql/core": "0.1.0",
+    "react": ">=16.8"
   },
-  "lint-staged": {
-    "(src|targets/*/src)/**/*.js": [
-      "yarn eslint --fix"
-    ]
+  "optionalDependencies": {
+    "@types/react": ">=16.8.0"
   },
   "keywords": [
     "css",
-    "style"
+    "style",
+    "styleql",
+    "react"
   ]
 }
