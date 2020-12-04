@@ -14,7 +14,7 @@ export const useTheme = () => {
   return React.useContext(ThemeContext);
 };
 
-export const bindStyleQLSheet = (Element, { createProps }) => {
+export const bindStyleQLSheet = (Component, { createProps }) => {
   return (strs, ...params) => {
     const styleSheet = parseStyleQLSheet(strs, ...params);
 
@@ -48,7 +48,7 @@ export const bindStyleQLSheet = (Element, { createProps }) => {
     };
 
     const StyledElement = (props) => {
-      const $root = createNode(<Element {...props} />);
+      const $root = createNode(<Component {...props} />);
       const theme = React.useContext(ThemeContext);
 
       styleSheet.applyStyles($root, theme);

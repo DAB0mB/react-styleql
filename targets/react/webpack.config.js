@@ -1,9 +1,16 @@
 const path = require('path');
 const merge = require('webpack-merge').default;
 
-module.exports = merge(require('../../webpack.config'), {
+const config = merge(require('../../webpack.config'), {
   entry: {
-    index: path.resolve(__dirname, 'src/index'),
+    dom: path.resolve(__dirname, 'src/envs/dom'),
+    native: path.resolve(__dirname, 'src/envs/native'),
+    ink: path.resolve(__dirname, 'src/envs/ink'),
+  },
+  resolve: {
+    alias: {
+      '@styleql/core': path.resolve('../../lib'),
+    },
   },
   output: {
     path: path.resolve(__dirname, 'lib'),
@@ -13,3 +20,7 @@ module.exports = merge(require('../../webpack.config'), {
     'react',
   ],
 });
+
+delete config.entry.index;
+
+module.exports = config;

@@ -56,29 +56,27 @@ export type FilterSpecifier = Specifier & {
 
 export type AnySpecifier = DirectSpecifier | AllSpecifier | FilterSpecifier;
 
-export type Node = {
-  new(): Node;
-};
+export class Node {}
 
-export type QueryNode = Node & {
+export class QueryNode extends Node {
   specifiers: AnySpecifier[];
   select($node: Node, specifiers: QueryNode['specifiers']): Set<$Node>;
-};
+}
 
-export type SelectorNode = Node & {
+export class SelectorNode extends Node {
   queries: QueryNode[];
   select($node: Node): Set<$Node>;
-};
+}
 
-export type BlockNode = Node & {
+export class BlockNode extends Node {
   selector: SelectorNode;
   childBlocks: BlockNode[];
   rules: { [key: string]: any };
   applyStyles($node: Node, theme: { [key: string]: any }): void;
-};
+}
 
-export type Cursor = {
-  new(str: string): Cursor;
+export class Cursor {
+  constructor(str: string);
   pos: number;
   str: string;
   value: string | undefined;
@@ -87,30 +85,32 @@ export type Cursor = {
   next(): IteratorResult<string | undefined>;
   nextIf(pattern: string): boolean;
   nextWhile(pattern: string | RegExp, result: IteratorResult<string | undefined>): string;
-};
+}
 
-export type Parser = {
-  new(cursor: Cursor, params: any[]);
+export class Parser {
+  constructor(cursor: Cursor, params: any[]);
   cursor: Cursor;
   params: any[];
   parseBlock(): BlockParser;
   parseSelector(): SelectorParser;
   parseQuery(): QueryParser;
   parseParam(literal: string): any;
-};
+}
 
-export type BlockParser = Parser & {
+export class BlockParser extends Parser {
   parse(): BlockNode;
   parseRule(): { key: string, value: any };
   parseKey(): string;
   parseValue(): any;
-};
+}
 
-export type SelectorParser = Parser & {
+export class SelectorParser extends Parser {
   parse(): SelectorNode;
-};
+}
 
-export type QueryParser = Parser & {
+export class QueryParser extends Parser {
   parse(): QueryNode;
   parseFilter(): AnyFilter;
-};
+}
+
+export function parseStyleQLSheet(strs: string[], pargs: any[]): BlockNode;
