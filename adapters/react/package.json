@@ -1,6 +1,6 @@
 {
-  "name": "@styleql/react",
-  "description": "A React adapter for @styleql/core",
+  "name": "@stylejs/react",
+  "description": "A React adapter for @stylejs/core",
   "version": "0.1.0",
   "scripts": {
     "lint": "eslint src/.",
@@ -29,7 +29,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "peerDependencies": {
-    "@styleql/core": "0.1.0",
+    "@stylejs/core": "0.1.0",
     "react": ">=16.8"
   },
   "optionalDependencies": {
@@ -38,7 +38,7 @@
   "keywords": [
     "css",
     "style",
-    "styleql",
+    "stylejs",
     "react"
   ]
 }

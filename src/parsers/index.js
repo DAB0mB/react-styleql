@@ -7,7 +7,7 @@ export { default as Parser } from './Parser';
 export { default as QueryParser } from './QueryParser';
 export { default as SelectorParser } from './SelectorParser';
 
-export const parseStyleQLSheet = (strs, ...pargs) => {
+export const parseStyleJSSheet = (strs, ...pargs) => {
   const params = [...new Set(pargs)];
 
   const template = strs.reduce((split, str, index) => {

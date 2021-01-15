@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { bindStyleQLSheet } from '..';
+import { bindStyleJSSheet } from '..';
 
 export * from '..';
 
@@ -17,12 +17,12 @@ const handlers = {
   }
 };
 
-const styleql = (...args) => {
+const stylejs = (...args) => {
   if (args[0] instanceof Array) {
-    return bindStyleQLSheet(React.Fragment, handlers)(...args);
+    return bindStyleJSSheet(React.Fragment, handlers)(...args);
   }
 
-  return bindStyleQLSheet(args[0], handlers);
+  return bindStyleJSSheet(args[0], handlers);
 };
 
-export default styleql;
+export default stylejs;

@@ -9,14 +9,14 @@ const config = merge(require('../../webpack.config'), {
   },
   resolve: {
     alias: {
-      '@styleql/core': path.resolve('../../lib'),
+      '@stylejs/core': path.resolve('../../lib'),
     },
   },
   output: {
     path: path.resolve(__dirname, 'lib'),
   },
   externals: [
-    '@styleql/core',
+    '@stylejs/core',
     'react',
   ],
 });

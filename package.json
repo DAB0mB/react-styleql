@@ -1,5 +1,5 @@
 {
-  "name": "@styleql/core",
+  "name": "@stylejs/core",
   "description": "A DOM free, light-weight, CSS-like query selector engine; with 0 dependencies!",
   "version": "0.1.0",
   "scripts": {

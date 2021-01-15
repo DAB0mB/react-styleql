@@ -1,17 +1,17 @@
-// Visit: codesandbox.io/s/react-styleql-testjs-02wh1
-import styleql, { ThemeProvider } from "@styleql/react/native";
+// Visit: codesandbox.io/s/react-stylejs-testjs-02wh1
+import style, { ThemeProvider } from "@stylejs/react/native";
 import React from "react";
 import { View, ScrollView, Text } from "react-native";
 
-const Br = styleql(View)`
+const Br = style(View)`
   margin-top: 20px;
 `;
 
-const Title = styleql(Text)`
+const Title = style(Text)`
   font-weight: 700;
 `;
 
-const AllChildrenOfTypeStyle = styleql`
+const AllChildrenOfTypeStyle = style`
   & ${View} {
     background-color: blue;
   }
@@ -45,7 +45,7 @@ const AllChildrenOfType = () => {
   );
 };
 
-const AllDirectChildrenOfTypeStyle = styleql`
+const AllDirectChildrenOfTypeStyle = style`
   & > ${View} {
     background-color: blue;
 
@@ -79,7 +79,7 @@ const AllDirectChildrenOfType = () => {
   );
 };
 
-const AllChildrenWithClassStyle = styleql`
+const AllChildrenWithClassStyle = style`
   & .red {
     background-color: red;
   }
@@ -116,7 +116,7 @@ const AllChildrenWithClass = () => {
   );
 };
 
-const MultiClassStyle = styleql`
+const MultiClassStyle = style`
   & .bg-blue {
     background-color: blue;
   }
@@ -146,7 +146,7 @@ const MultiClass = () => {
   );
 };
 
-const NthChildrenStyle = styleql`
+const NthChildrenStyle = style`
   & ${Text}!#3 {
     color: white;
   }
@@ -185,7 +185,7 @@ const NthChildren = () => {
   );
 };
 
-const NegativityStyle = styleql`
+const NegativityStyle = style`
   & !#1 {
     color: white;
   }
@@ -215,7 +215,7 @@ const Negativity = () => {
   );
 };
 
-const ByPropStyle = styleql`
+const ByPropStyle = style`
   & ${Text} {
     color: white;
   }
@@ -241,7 +241,7 @@ const ByProp = () => {
   );
 };
 
-const PropEvalStyle = styleql`
+const PropEvalStyle = style`
   & ${Text} {
     color: white;
     background-color: ${props => (props.disabled ? "red" : "green")};
@@ -260,7 +260,7 @@ const PropEval = () => {
   );
 };
 
-const ThemetEvalStyle = styleql`
+const ThemetEvalStyle = style`
   & ${Text} {
     color: white;
   }

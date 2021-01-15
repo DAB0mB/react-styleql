@@ -113,4 +113,4 @@ export class QueryParser extends Parser {
   parseFilter(): AnyFilter;
 }
 
-export function parseStyleQLSheet(strs: string[], pargs: any[]): BlockNode;
+export function parseStyleJSSheet(strs: string[], pargs: any[]): BlockNode;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { parseStyleQLSheet } from '@styleql/core';
+import { parseStyleJSSheet } from '@stylejs/core';
 
 export const ThemeContext = React.createContext(null);
 
@@ -14,9 +14,9 @@ export const useTheme = () => {
   return React.useContext(ThemeContext);
 };
 
-export const bindStyleQLSheet = (Component, { createProps }) => {
+export const bindStyleJSSheet = (Component, { createProps }) => {
   return (strs, ...params) => {
-    const styleSheet = parseStyleQLSheet(strs, ...params);
+    const styleSheet = parseStyleJSSheet(strs, ...params);
 
     const createNode = (element) => {
       if (typeof element != 'object') return element;
